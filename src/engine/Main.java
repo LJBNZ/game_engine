@@ -19,7 +19,7 @@ public class Main {
 	private final static int FPS_CAP = 60;
 	private static double frame_delay;
 	private static double next_frame = 0;
-	
+		
 	public static void main(String args[]) {
 		//Initialise the game
 		initDisplay();

@@ -9,11 +9,11 @@ public class Game {
 	
 	private ArrayList<GameObject> game_objects;
 	private Player player;
-	public static final float GROUND_LEVEL = 0;
+	public static final float GROUND_LEVEL = 200;
 	
 	public Game(long window, float window_width, float window_height) {
 		game_objects = new ArrayList<GameObject>();
-		player = new Player(window_width / 2 - (Player.SIZE / 2), window_height / 2 - (Player.SIZE / 2));
+		player = new Player(window_width / 2 - (Player.SIZE / 2), 200);
 		GameObject floor = new GameObject(-100, 0, 0f, 1f, 0f, 200, 1000);
 		
 		game_objects.add(floor);

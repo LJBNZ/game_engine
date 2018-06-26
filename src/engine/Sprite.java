@@ -1,12 +1,12 @@
 package engine;
 
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.stb.STBImage.*;
 
 public class Sprite {
 	public float r;
 	public float g;
 	public float b;
-	
 	public float height;
 	public float width;
 	
