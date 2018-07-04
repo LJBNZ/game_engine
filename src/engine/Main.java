@@ -5,7 +5,6 @@ import static org.lwjgl.opengl.GL11.*;
 import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GLUtil;
-
 import game.Game;
 import input.KeyboardHandler;
 
@@ -90,7 +89,7 @@ public class Main {
 		
 		glDisable(GL_DEPTH_TEST);
 		
-		glClearColor(0f, 0f, 1f, 0);
+		glClearColor(0.3f, 0.5f, 0.92f, 0);
 	}
 	
 	public static void initGame() {

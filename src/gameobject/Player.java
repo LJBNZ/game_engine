@@ -1,7 +1,9 @@
 package gameobject;
 
 import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.*;
 import engine.GameObject;
+import engine.Maths;
 import engine.Sprite;
 import engine.Physics;
 import game.Game;
@@ -20,8 +22,8 @@ public class Player extends GameObject {
 	private float jump_duration = 10f;
 	private double jump_started;
 	
-	public Player (float x, float y) {
-		super(x, y, 0.8f, 0.1f, 0.5f, SIZE, SIZE);
+	public Player (float x, float y, String tex_path) {
+		super(x, y, tex_path, SIZE, SIZE);
 	}
 	
 	public void getInput() {
@@ -54,6 +56,7 @@ public class Player extends GameObject {
 				super.setPosY(Game.GROUND_LEVEL);
 			}
 		}
+		System.out.println(Maths.perlinNoise(super.getPosX()));
 	}
 
 	private void move(float x) {
@@ -65,5 +68,11 @@ public class Player extends GameObject {
 		airborne = true;
 		jump_started = glfwGetTime();
 		jump_direction = move_direction;
+	}
+	
+	@Override
+	public void render() {
+		glTranslatef(super.getPosX(), super.getPosY(), 0);
+		sprite.render();
 	}
 }

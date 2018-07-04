@@ -5,17 +5,12 @@ import static org.lwjgl.opengl.GL11.*;
 public class GameObject {
 	private float posx;
 	private float posy;
-	private Sprite sprite;
+	public Sprite sprite;
 	
-	public GameObject(float x, float y) {
+	public GameObject(float x, float y, String tex_path, float width, float height) {
 		this.posx = x;
 		this.posy = y;
-	}
-	
-	public GameObject(float x, float y, float r, float g, float b, float height, float width) {
-		this.posx = x;
-		this.posy = y;
-		sprite = new Sprite(r, g, b, height, width);
+		sprite = new Sprite(tex_path, height, width);
 	}
 	
 	public float getPosX() {
