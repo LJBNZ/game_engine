@@ -11,8 +11,8 @@ import input.KeyboardHandler;
 public class Main {
 	
 	static long window;
-	static int window_width = 800;
-	static int window_height = 600;
+	static final int WINDOW_WIDTH = 800;
+	static final int WINDOW_HEIGHT = 600;
 	static Game game;
 	private static GLFWKeyCallback keyCallback;
 	private final static int FPS_CAP = 60;
@@ -64,7 +64,7 @@ public class Main {
 		if (!glfwInit()) {
 			throw new IllegalStateException("Unable to initialize GLFW");
 		}
-		window = glfwCreateWindow(window_width, window_height, "game", 0, 0);
+		window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "game", 0, 0);
 		
 		glfwDefaultWindowHints(); 
 		glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); 
@@ -84,7 +84,7 @@ public class Main {
 
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		glOrtho(0, window_width, 0, window_height, -1, 1);
+		glOrtho(0, WINDOW_WIDTH, 0, WINDOW_HEIGHT, -1, 1);
 		glMatrixMode(GL_MODELVIEW);
 		
 		glDisable(GL_DEPTH_TEST);
@@ -93,7 +93,7 @@ public class Main {
 	}
 	
 	public static void initGame() {
-		game = new Game(window, window_width, window_height);
+		game = new Game(window, WINDOW_WIDTH, WINDOW_HEIGHT);
 		frame_delay = 1f / FPS_CAP;		
 	}
 	

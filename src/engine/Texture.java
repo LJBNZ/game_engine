@@ -82,7 +82,6 @@ public class Texture {
             /* Load image */
             stbi_set_flip_vertically_on_load(true);
             image = stbi_load(path, w, h, comp, 4);
-            System.out.println(path);
             if (image == null) {
                 throw new RuntimeException("Failed to load a texture file!"
                                            + System.lineSeparator() + stbi_failure_reason());

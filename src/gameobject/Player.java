@@ -6,12 +6,13 @@ import engine.GameObject;
 import engine.Maths;
 import engine.Sprite;
 import engine.Physics;
+import engine.Terrain;
 import game.Game;
 import input.KeyboardHandler;
 
 public class Player extends GameObject {
 	public static final float SIZE = 32;
-	private float move_speed = 5f;
+	private float move_speed = 50f;
 	private float move_direction = 0;
 	private float jump_direction;
 	private float max_jump_speed = 20f;
@@ -45,7 +46,7 @@ public class Player extends GameObject {
 		if (airborne) {
 			double time = glfwGetTime();
 			double elapsed = time - jump_started;
-			if (elapsed >= 0f && super.getPosY() >= Game.GROUND_LEVEL) {
+			if (elapsed >= 0f && super.getPosY() >= Terrain.getTerrainHeight(super.getPosX())) {
 				jump_velocity = (float) Math.max((2 * ((jump_duration / 2) - elapsed * max_jump_speed)), -max_fall_speed);
 				super.setPosY(super.getPosY() + jump_velocity);
 				if (jump_direction != 0) {
@@ -53,15 +54,16 @@ public class Player extends GameObject {
 				}
 			} else {
 				airborne = false;
-				super.setPosY(Game.GROUND_LEVEL);
+				super.setPosY(Terrain.getTerrainHeight(super.getPosX()));
 			}
 		}
-		System.out.println(Maths.perlinNoise(super.getPosX()));
 	}
 
 	private void move(float x) {
 		move_direction = x;
-		super.setPosX(super.getPosX() + (x * move_speed));
+		float new_x = super.getPosX() + (x * move_speed);
+		super.setPosX(new_x);
+		super.setPosY(Terrain.getTerrainHeight(new_x));
 	}
 	
 	private void jump() {
@@ -72,7 +74,7 @@ public class Player extends GameObject {
 	
 	@Override
 	public void render() {
-		glTranslatef(super.getPosX(), super.getPosY(), 0);
+		glTranslatef(super.getPosX() - SIZE / 2, super.getPosY(), 0);
 		sprite.render();
 	}
 }

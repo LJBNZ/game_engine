@@ -42,7 +42,7 @@ public class Game {
 
 		move_camera(player, window_width, window_height);
 		
-		Terrain.render((int)player.getPosX(), 1000, 100);
+		Terrain.render((int)player.getPosX(), 1000);
 		
 		for (GameObject obj : environment_objects) {
 			obj.render();
@@ -55,8 +55,8 @@ public class Game {
 	private void move_camera(Player player, int window_width, int window_height) {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		glOrtho(0 + player.getPosX(), window_width + player.getPosX(), 0, window_height, -1, 1);
-		glTranslatef(window_width / 2 - Player.SIZE / 2, 0, 0);
+		glOrtho(player.getPosX(), window_width + player.getPosX(), player.getPosY(), player.getPosY() + window_height, -1, 1);
+		glTranslatef(window_width / 2 - Player.SIZE / 2, window_height / 2 - Player.SIZE / 2, 0);
 		glMatrixMode(GL_MODELVIEW);
 	}
 }
