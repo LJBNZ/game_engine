@@ -43,8 +43,9 @@ public class GameObject {
 	
 	public void render() {
 		glPushMatrix();
-			glTranslatef(posx, posy, 0);
-			sprite.render();
+		glTranslatef(posx, posy, 0);
+		sprite.render();
+			
 		glPopMatrix();
 	}
 }

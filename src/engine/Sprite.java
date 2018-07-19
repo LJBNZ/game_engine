@@ -15,7 +15,6 @@ public class Sprite {
 
 	public void render() {
 		if (this.tex == null) {
-			glColor3f(1f, 0f, 1f);
 			glBegin(GL_QUADS);
 				glVertex2f(0, 0);
 				glVertex2f(0, height);
@@ -23,6 +22,7 @@ public class Sprite {
 				glVertex2f(width, 0);
 			glEnd();
 		} else {
+			glColor3f(1f, 1f, 1f);
 			glEnable(GL_TEXTURE_2D);
 			glEnable(GL_ALPHA_TEST);
 			glAlphaFunc(GL_GREATER,0);
@@ -36,6 +36,7 @@ public class Sprite {
 			glDisable(GL_TEXTURE_2D);
 			glDisable(GL_ALPHA_TEST); 
 		}
+		
 	}
 	
 	public float getHeight() {

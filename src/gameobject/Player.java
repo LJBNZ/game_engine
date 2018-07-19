@@ -12,7 +12,7 @@ import input.KeyboardHandler;
 
 public class Player extends GameObject {
 	public static final float SIZE = 32;
-	private float move_speed = 50f;
+	private float move_speed = 5f;
 	private float move_direction = 0;
 	private float jump_direction;
 	private float max_jump_speed = 20f;
@@ -74,7 +74,9 @@ public class Player extends GameObject {
 	
 	@Override
 	public void render() {
-		glTranslatef(super.getPosX() - SIZE / 2, super.getPosY(), 0);
-		sprite.render();
+		glPushMatrix();
+			glTranslatef(super.getPosX() - SIZE / 2, super.getPosY(), 0);
+			sprite.render();
+		glPopMatrix();
 	}
 }
