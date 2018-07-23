@@ -19,7 +19,7 @@ public class Terrain {
 			float height = getTerrainHeight(terrain_sample);
 			float next_height = getTerrainHeight(terrain_sample + TILE_SIZE);
 			glBegin(GL_QUADS);
-				glColor3f(0f, 0.392f, 0f);
+				glColor3f(0.18f, 0.463f, 0.094f);
 				glVertex2f(terrain_sample, -1000);
 				glVertex2f(terrain_sample, height);
 				glVertex2f(terrain_sample + TILE_SIZE, next_height);
@@ -30,7 +30,7 @@ public class Terrain {
 
 	}
 	
-	public static float getTerrainHeight(float x) {
-		return GROUND_HEIGHT + Maths.perlinNoise(Math.abs(x)/X_PERIOD_DIVIDEND) * Y_AMPLITUDE;
+	public static int getTerrainHeight(float x) {
+		return (int) (GROUND_HEIGHT + Maths.perlinNoise(Math.abs(x)/X_PERIOD_DIVIDEND) * Y_AMPLITUDE);
 	}
 }

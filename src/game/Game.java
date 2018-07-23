@@ -4,6 +4,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 import java.util.ArrayList;
 
+import engine.Environment;
 import engine.GameObject;
 import engine.Terrain;
 import gameobject.Player;
@@ -21,21 +22,10 @@ public class Game {
 	public Game(long window, float window_width, float window_height) {
 		game_objects = new ArrayList<GameObject>();
 		environment_objects = new ArrayList<GameObject>();
+		Environment.init();
 
-		player = new Player((window_width / 2 - (Player.SIZE / 2)), 200, RES_PATH + "player.png");
-		GameObject test_tree = new GameObject(600 - 64, Terrain.getTerrainHeight(600), RES_PATH + "tree.png", 128, 256);
-		GameObject test_tree1 = new GameObject(300 - 64, Terrain.getTerrainHeight(300), RES_PATH + "tree.png", 128, 256);
-		GameObject test_tree2 = new GameObject(400 - 64, Terrain.getTerrainHeight(400), RES_PATH + "tree.png", 128, 256);
-		GameObject test_tree3 = new GameObject(100 - 64, Terrain.getTerrainHeight(100), RES_PATH + "tree.png", 128, 256);
-		
+		player = new Player((window_width / 2 - (Player.WIDTH / 2)), 200, RES_PATH + "player.png");		
 		game_objects.add(player);
-		game_objects.add(test_tree);
-		game_objects.add(test_tree1);
-		game_objects.add(test_tree2);
-		game_objects.add(test_tree3);
-
-
-
 	}
 	
 	public void getInput() {
@@ -43,6 +33,9 @@ public class Game {
 	}
 	
 	public void update() {
+		
+		Environment.update(player.getPosX());
+		
 		for (GameObject obj : game_objects) {
 			obj.update();
 		}
@@ -50,8 +43,8 @@ public class Game {
 	
 	public void render() {
 		move_camera(player, window_width, window_height);
-		
-		Terrain.render((int)player.getPosX());
+				
+		Environment.render((int)player.getPosX());
 		
 		for (GameObject obj : environment_objects) {
 			obj.render();
@@ -68,7 +61,7 @@ public class Game {
 		glMatrixMode(GL_PROJECTION);
 			glLoadIdentity();
 			glOrtho(player.getPosX(), window_width + player.getPosX(), player.getPosY(), player.getPosY() + window_height, -1, 1);
-			glTranslatef(window_width / 2 - Player.SIZE / 2, window_height / 2 - Player.SIZE / 2, 0);
+			glTranslatef(window_width / 2 - Player.WIDTH / 2, window_height / 2 - Player.WIDTH / 2 - 100, 0);
 		glMatrixMode(GL_MODELVIEW);
 	}
 }

@@ -11,8 +11,8 @@ import input.KeyboardHandler;
 public class Main {
 	
 	static long window;
-	static final int WINDOW_WIDTH = 800;
-	static final int WINDOW_HEIGHT = 600;
+	public static final int WINDOW_WIDTH = 800;
+	public static final int WINDOW_HEIGHT = 600;
 	static Game game;
 	private static GLFWKeyCallback keyCallback;
 	private final static int FPS_CAP = 60;

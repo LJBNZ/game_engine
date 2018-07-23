@@ -33,7 +33,7 @@ public class Maths {
 	public static float perlinNoise(float x) {
 		float total = 0;
 		float persistence = 0.25f;
-		int octaves = 6;
+		int octaves = 4;
 		for (int k = 0; k < octaves; k++) {
 			float frequency = (float) Math.pow(2, k);
 			float amplitude = (float) Math.pow(persistence, k);
