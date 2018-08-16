@@ -13,17 +13,18 @@ public class Terrain {
 		float left_sample = Math.floorDiv((int) (center - half_win_width), TILE_SIZE) * TILE_SIZE;
 		float right_sample = (float) (Math.ceil((center + half_win_width) / TILE_SIZE)) * TILE_SIZE;
 		
-		
 		for (float terrain_sample = left_sample; terrain_sample <= right_sample; terrain_sample += TILE_SIZE) {
 			//draw the terrain
 			float height = getTerrainHeight(terrain_sample);
 			float next_height = getTerrainHeight(terrain_sample + TILE_SIZE);
+			
 			glBegin(GL_QUADS);
 				glColor3f(0.18f, 0.463f, 0.094f);
-				glVertex2f(terrain_sample, -1000);
-				glVertex2f(terrain_sample, height);
-				glVertex2f(terrain_sample + TILE_SIZE, next_height);
-				glVertex2f(terrain_sample + TILE_SIZE, -1000);
+				glVertex3f(terrain_sample, -1000, 0);
+				glVertex3f(terrain_sample, height, 0);
+				glVertex3f(terrain_sample + TILE_SIZE, next_height, 0);
+				glVertex3f(terrain_sample + TILE_SIZE, -1000, 0);
+
 			glEnd();
 
 		}

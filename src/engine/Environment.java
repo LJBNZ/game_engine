@@ -16,6 +16,7 @@ public class Environment {
 	private static ArrayList<Tree> trees;
 	private static ArrayList<Grass> grasses;
 	private static ArrayList<Bush> bushes;
+	private static ArrayList<Plane> planes;
 	private static ArrayList<Integer> tree_positions;
 	private static int chunk_left_bound;
 	private static int chunk_right_bound;
@@ -33,6 +34,9 @@ public class Environment {
 		bushes = new ArrayList<Bush>();
 		bushes.add(new Bush("Berry Bush", game.Game.RES_PATH + "bush1.png", 64, 32));
 		bushes.add(new Bush("Long grass", game.Game.RES_PATH + "bush2.png", 64, 32));
+		
+		planes = new ArrayList<Plane>();
+		planes.add(new Plane(game.Game.RES_PATH + "bg.png", 800, 600, 20, 5));
 		
 		tree_positions = getTreePositions(-1000, CHUNK_SIZE);
 		chunk_left_bound = -1000;
@@ -55,11 +59,15 @@ public class Environment {
 		}
 	}
 
-	public static void render(float player_x) {
+	public static void render(float player_x, float player_y) {
 		
 		float half_win_width = Main.WINDOW_WIDTH / 2;
 		float left_bound = player_x - (half_win_width + RENDER_X_BUFFER);
 		float right_bound = player_x + (half_win_width + RENDER_X_BUFFER);
+		
+		for (Plane p:planes) {
+			p.render(player_x, player_y);
+		}
 				
 		Iterator<Integer> itr = tree_positions.iterator();
 		

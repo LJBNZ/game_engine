@@ -1,5 +1,6 @@
 package game;
 
+import static org.lwjgl.glfw.GLFW.glfwGetTime;
 import static org.lwjgl.opengl.GL11.*;
 
 import java.util.ArrayList;
@@ -18,6 +19,8 @@ public class Game {
 	private int window_height = 600;
 	public static final float GROUND_LEVEL = 200;
 	public static final String RES_PATH = "./src/resources/";
+	public Time game_time;
+	
 	
 	public Game(long window, float window_width, float window_height) {
 		game_objects = new ArrayList<GameObject>();
@@ -26,6 +29,8 @@ public class Game {
 
 		player = new Player((window_width / 2 - (Player.WIDTH / 2)), 200, RES_PATH + "player.png");		
 		game_objects.add(player);
+		
+		game_time = new Time(glfwGetTime());
 	}
 	
 	public void getInput() {
@@ -33,6 +38,7 @@ public class Game {
 	}
 	
 	public void update() {
+		game_time.update();
 		
 		Environment.update(player.getPosX());
 		
@@ -44,7 +50,7 @@ public class Game {
 	public void render() {
 		move_camera(player, window_width, window_height);
 				
-		Environment.render((int)player.getPosX());
+		Environment.render(player.getPosX(), player.getPosY());
 		
 		for (GameObject obj : environment_objects) {
 			obj.render();

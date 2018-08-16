@@ -84,12 +84,12 @@ public class Main {
 
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		glOrtho(0, WINDOW_WIDTH, 0, WINDOW_HEIGHT, -1, 1);
+		glOrtho(0, WINDOW_WIDTH, 0, WINDOW_HEIGHT, -1, 100);
 		glMatrixMode(GL_MODELVIEW);
 		
 		glDisable(GL_DEPTH_TEST);
-		
-		glClearColor(0.3f, 0.5f, 0.92f, 0);
+			
+		glClearColor(0.5f, 0.7f, 1f, 0);
 	}
 	
 	public static void initGame() {
